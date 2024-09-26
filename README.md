@@ -36,7 +36,7 @@ python manage.py runserver
     * [ ] Create superuser admin
     * [ ] Two different account types: superuser and user
 
-* [ ] On successful login, be directed to a "Hello, World" homepage
+* [x] On successful login, be directed to a "Hello, World" homepage
 
 ## Phase 2: Customization
 
