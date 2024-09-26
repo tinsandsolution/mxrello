@@ -15,3 +15,9 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 ```
+
+# Roadmap
+
+* [ ] Buy groceries
+
+* [ ] checked
