@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Unfinished Tickets</h1>
+<ul>
+{% for ticket in tickets %}
+    <li>
+        <strong>{{ ticket.title }}</strong> - {{ ticket.status }}<br>
+        Priority: {{ ticket.priority }}<br>
+        Due Date: {{ ticket.dueDate|date:"F j, Y" }}<br>
+        Assignees: {{ ticket.assignees }}<br>
+        <a href="{{ ticket.url }}" target="_blank">View in MaintainX</a>
+    </li>
+{% empty %}
+    <li>No unfinished tickets found.</li>
+{% endfor %}
+</ul>
+{% endblock %}
