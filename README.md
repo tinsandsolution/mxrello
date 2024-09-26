@@ -29,27 +29,26 @@ python manage.py runserver
 
 ## Phase 1: "Backend"
 
-* [ ] Get login/logout/signup working on local
-    * [ ] Make sure that we can manually modify passwords for users (password resets with email are complicated)
-    * [ ] Have a display to show a successful login
-    * [ ] Create relevant tests
-    * [ ] Create superuser admin
-    * [ ] Two different account types: superuser and user
+* [z] Get login/logout/signup working on local
+    * [x] Make sure that we can manually modify passwords for users (password resets with email are complicated)
+    * [x] Have a display to show a successful login
+    * [?] Create relevant tests
+    * [x] Create superuser admin
+    * [x] Two different account types: superuser and user
 
 * [x] On successful login, be directed to a "Hello, World" homepage
 
 ## Phase 2: Customization
 
-* [ ] Create a URL schema that allows Kanban grouping by various different categories
+* [ ] Create a python.... thing that allows Kanban grouping by various different categories
 * [ ] Add custom text to show up according to schema
 * [ ] Add url-based category filters as well
 * [ ] Add multilayered sorts
-* [ ] Allow for exclusion of cards
-* [ ] Allow for exclusion of lists
+* [ ] Allow for exclusion of cards based on fields and boolean logic
 
+## Phase 3: Urlization
 
-## Phase 3: "Frontend"
-
+* [ ] Turn that into url stuff with kanban output
 * [ ] Create a responsive Kanban frontend with modals
 * [ ] Make it look pretty but not too pretty
 
