@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ..
+
 # Set project name to the current directory name
 PROJECT_NAME="mxrello"
 
