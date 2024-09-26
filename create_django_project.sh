@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Set project name
-PROJECT_NAME="static_mx_kanban"
+# Set project name to the current directory name
+PROJECT_NAME="mxrello"
 
 # Create and activate virtual environment
 python3 -m venv venv
@@ -10,9 +10,8 @@ source venv/bin/activate
 # Install Django
 pip install django
 
-# Create Django project
-django-admin startproject $PROJECT_NAME
-cd $PROJECT_NAME
+# Create Django project in the current directory
+django-admin startproject $PROJECT_NAME .
 
 # Create users app
 python manage.py startapp users
@@ -21,7 +20,7 @@ python manage.py startapp users
 mkdir -p users/templates/users
 mkdir templates
 
-# Create and populate settings.py additions
+# Append additional settings to settings.py
 cat << EOF >> $PROJECT_NAME/settings.py
 
 # Additional settings
