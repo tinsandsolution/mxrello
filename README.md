@@ -38,17 +38,12 @@ python manage.py runserver
 
 * [x] On successful login, be directed to a "Hello, World" homepage
 
-## Phase 2: Customization
+## Phase 2: One View For Mike
 
-* [ ] Create a python.... thing that allows Kanban grouping by various different categories
-* [ ] Add custom text to show up according to schema
-* [ ] Add url-based category filters as well
-* [ ] Add multilayered sorts
-* [ ] Allow for exclusion of cards based on fields and boolean logic
-
-## Phase 3: Urlization
-
-* [ ] Turn that into url stuff with kanban output
+* [ ] Sort Options
+* [ ] Lists by site location
+* [ ] Dropdown checklist to exclude or include Bucks (default maintenance)
+* [ ] Dropdown checklist to exclude or include Bucks (default arizona)
 * [ ] Create a responsive Kanban frontend with modals
 * [ ] Make it look pretty but not too pretty
 
@@ -71,3 +66,10 @@ python manage.py runserver
 - "last updated" on the bottom right
 
 
+## Customization
+
+* [ ] Create a python.... thing that allows Kanban grouping by various different categories
+* [ ] Add custom text to show up according to schema
+* [ ] Add url-based category filters as well
+* [ ] Add multilayered sorts
+* [ ] Allow for exclusion of cards based on fields and boolean logic
