@@ -127,7 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INSTALLED_APPS += ['users']
 
 # Whitelist of allowed email domains
-ALLOWED_EMAIL_DOMAINS = ['example.com', 'allowed.com']
+ALLOWED_EMAIL_DOMAINS = ['cobblestone.com']
 
 # Set custom user model
 AUTH_USER_MODEL = 'users.CustomUser'
