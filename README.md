@@ -40,14 +40,18 @@ python manage.py runserver
 
 ## Phase 2: One View For Mike
 
-* [ ] Sort Options
+* [ ] Sort Options (default oldest to newest in terms of creation date)
 * [ ] Lists by site location
-* [ ] Dropdown checklist to exclude or include Bucks (default maintenance)
-* [ ] Dropdown checklist to exclude or include Bucks (default arizona)
-* [ ] Create a responsive Kanban frontend with modals
+* [ ] Dropdown checklist to exclude or include Bucks (default only maintenance)
+* [ ] Dropdown checklist to exclude or include Bucks (default only colorado)
+
+## Phase 3: Modals
+
+* [ ] modal card with default data
 * [ ] Make it look pretty but not too pretty
 
-# Phase 4: Deployment
+
+## Phase 4: Deployment
 
 * [ ] Show boss, ask for approval to push it to prod
 * [ ] Make sure both of these things work on production and are accessible through intr, with at least two users (admin and not admin)
