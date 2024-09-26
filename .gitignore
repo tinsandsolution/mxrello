@@ -6,3 +6,4 @@ instance/
 .env
 *.db
 db.sqlite3
+unfinished_tickets.json
