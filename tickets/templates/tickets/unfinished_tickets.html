@@ -1,18 +1,179 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+    .kanban-page {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        background-color: #0079bf;
+    }
+    .top-menu {
+        height: 5%;
+        /* background-color: #f1f1f1; */
+        padding: 5px 10px;
+        /* min-height: 30px; */
+        /* max-height: 10%; */
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e3ecf254;
+    }
+    .top-menu h2 {
+        margin: 0;
+        margin-right: 20px;
+    }
+    .top-menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    .top-menu ul li {
+        margin-right: 10px;
+    }
+    .kanban-container {
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 95%;
+        width: 100%;
+        /* background-color: darkgrey; */
+        /* max-height: ; */
+        overflow-y: hidden;
+    }
+    .column-collection {
+        display: flex;
+        overflow-x: auto; /* Horizontal overflow is still allowed */
+        overflow-y: auto; /* Vertical overflow will trigger scrolling */
+        padding: 5px;
+        flex: 1;
+        margin: auto;
+        height: 80vh;
+        max-height: 90vh;
+        width: 97%;
+        /* background-color: aqua; */
+    }
+    .column {
+        flex: 0 0 300px; /* Fixed width for the column */
+        margin-right: 20px;
+        background-color:rgb(236, 236, 236);
+        padding: 10px;
+        border-radius: 5px;
+        
+        height: fit-content;
+        max-height: 75vh; /* Limits the column's max height relative to the viewport height */
+        
+        overflow-y: auto; /* Enables scrolling when the content exceeds the height */
+    }
+    .card {
+        background-color: white;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        max-height: 5%;
+        cursor: pointer;
+        overflow-y: auto;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer; 
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<h1>Unfinished Tickets</h1>
-<ul>
-{% for ticket in tickets %}
-    <li>
-        <strong>{{ ticket.title }}</strong> - {{ ticket.status }}<br>
-        Priority: {{ ticket.priority }}<br>
-        Due Date: {{ ticket.dueDate|date:"F j, Y" }}<br>
-        Assignees: {{ ticket.assignees }}<br>
-        <a href="{{ ticket.url }}" target="_blank">View in MaintainX</a>
-    </li>
-{% empty %}
-    <li>No unfinished tickets found.</li>
-{% endfor %}
-</ul>
+<div class="kanban-page">
+    <nav class="top-menu">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </nav>
+    <div class="kanban-container">
+        <div class="column-collection">
+            {% regroup tickets by storeId as store_list %}
+            {% for store in store_list %}
+                <div class="column">
+                    <h3>Store ID: {{ store.grouper|default:"None" }}</h3>
+                    {% for ticket in store.list %}
+                        <div class="card" data-ticket-id="{{ ticket.databaseId }}">
+                            <h4>{{ ticket.title }}</h4>
+                            <p>Status: {{ ticket.status }}</p>
+                            <p>Priority: {{ ticket.priority }}</p>
+                            <p>Due: {{ ticket.dueDate|date:"F j, Y" }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- <div id="ticket-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-status"></p>
+        <p id="modal-priority"></p>
+        <p id="modal-due-date"></p>
+        <p id="modal-description"></p>
+        <p id="modal-assignees"></p>
+        <a id="modal-url" target="_blank">View in MaintainX</a>
+    </div>
+</div> -->
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('ticket-modal');
+    var span = document.getElementsByClassName('close')[0];
+
+    document.querySelectorAll('.card').forEach(function(card) {
+        card.addEventListener('click', function() {
+            var ticketId = this.getAttribute('data-ticket-id');
+            document.getElementById('modal-title').textContent = this.querySelector('h4').textContent;
+            document.getElementById('modal-status').textContent = this.querySelectorAll('p')[0].textContent;
+            document.getElementById('modal-priority').textContent = this.querySelectorAll('p')[1].textContent;
+            document.getElementById('modal-due-date').textContent = this.querySelectorAll('p')[2].textContent;
+            modal.style.display = 'block';
+        });
+    });
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+});
+</script>
 {% endblock %}
